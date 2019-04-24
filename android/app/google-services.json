@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "727189310307",
+    "firebase_url": "https://firbase-practice-efdb9.firebaseio.com",
+    "project_id": "firbase-practice-efdb9",
+    "storage_bucket": "firbase-practice-efdb9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:727189310307:android:562c26331e6c21ee",
+        "android_client_info": {
+          "package_name": "com.fc2androiddownloader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "727189310307-t2i746vhrgldbva1ntplgsuvt000p272.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJ7O46SNAKthme3ZYKvfVS7Wu8ASJTJDw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "727189310307-t2i746vhrgldbva1ntplgsuvt000p272.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
