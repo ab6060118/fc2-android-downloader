@@ -17,14 +17,13 @@ export default class Post extends React.Component {
     }
 
     async download() {
-        console.log('ddddddd')
         let { navigation } = this.props
         let urls = navigation.getParam('urls') || []
         let no = navigation.getParam('no')
 
         this.setState({ isDownloading: true })
         try {
-            await doDownload(`fc2-${no}`, urls)
+            await doDownload(`fc2-${no}`, urls, no)
             ToastAndroid.show('Download Success', ToastAndroid.SHORT); 
         }
         catch(e) {
@@ -54,7 +53,7 @@ export default class Post extends React.Component {
 
     renderItem({ item }) {
         return (
-            <Lightbox>
+            <Lightbox activeProps={{style: { flex: 1, width: Dimensions.get('window').width, height: Dimensions.get('window').height }, resizeMode: 'contain'}}>
                 <Image source={{uri: item || undefined}} style={{height: Dimensions.get('window').width/2, marginTop: 5, marginBottom: 5}} resizeMode='contain' />
             </Lightbox>
         )

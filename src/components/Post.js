@@ -11,7 +11,9 @@ export default class Post extends React.Component {
     onPress() {
         let { images, time, name, no, onPress, magnet } = this.props
 
-        onPress({name, time, images, no, urls: [magnet, ...images]})
+        ims = images || []
+
+        onPress({name, time, images, no, urls: [magnet, ...ims]})
     }
 
     render() {

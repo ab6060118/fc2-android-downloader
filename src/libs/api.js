@@ -22,10 +22,6 @@ const login = (nasUrl, username, password) => {
 }
 
 const createFolder = (nasUrl, token, folderName) => {
-
-    console.log(nasUrl, token, folderName)
-    console.log(123123123123123123)
-
     return fetch(`${nasUrl}/cgi-bin/filemanager/utilRequest.cgi?func=createdir&sid=${token}`, {
         "credentials": "include",
         "headers": { "accept": "*/*", "accept-language": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7", "cache-control": "no-cache", "content-type": "application/x-www-form-urlencoded; charset=UTF-8", "pragma": "no-cache", "x-requested-with": "XMLHttpRequest" },
@@ -43,7 +39,7 @@ const createFolder = (nasUrl, token, folderName) => {
 }
 
 const addDownload = (nasUrl, token, folderName, urls) => {
-    let urlString = urls.slice(0, 30).reduce((url1, url2)=> `${url1}&url=${url2}`)
+    let urlString = urls[0]
 
     return fetch(`${nasUrl}/downloadstation/V4/Task/AddUrl`, {
         "credentials": "include",
@@ -61,16 +57,29 @@ const addDownload = (nasUrl, token, folderName, urls) => {
     })
 }
 
-export const doDownload = async (folderName, urls) => {
+const addDownloadImage = (nasUrl, no, urls) => {
+    return fetch(`${nasUrl}:8888/download`, {
+        "headers": {'content-type': 'application/json'},
+        "body": JSON.stringify({no, no, urls:urls.slice(1)}),
+        "method": "POST",
+    })
+    .then(data => data.json())
+    .then(data => {
+        if (data.error_message) throw data.error_message
+        return true
+    })
+}
+
+export const doDownload = async (folderName, urls, no) => {
     let nasUrl = await AsyncStorage.getItem('nas')
     let username = await AsyncStorage.getItem('username')
     let password = await AsyncStorage.getItem('password')
 
     try {
         let token = await login(nasUrl, username, password)
-        console.log(nasUrl, token, folderName)
         let create = await createFolder(nasUrl, token, folderName)
         let download = await addDownload(nasUrl, token, folderName, urls)
+        let downloadImage = await addDownloadImage(nasUrl, no, urls)
     } catch(e) {
         throw e
     }
