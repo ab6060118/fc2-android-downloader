@@ -58,7 +58,7 @@ const addDownload = (nasUrl, token, folderName, urls) => {
 }
 
 const addDownloadImage = (nasUrl, no, urls) => {
-    return fetch(`${nasUrl}:8888/download`, {
+    return fetch(`${nasUrl.replace('https','http')}:8888/download`, {
         "headers": {'content-type': 'application/json'},
         "body": JSON.stringify({no, no, urls:urls.slice(1)}),
         "method": "POST",
